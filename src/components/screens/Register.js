@@ -23,9 +23,8 @@ class Register extends Component {
         })
     }
 
+    // Send credentials to server if signup success
     register = () => {
-        // Move baseUrl to secure folder once finished
-        // Send credentials to server if signup success
         fetch(config.baseUrl + 'signup', {
             method: 'POST',
             headers: {
@@ -33,8 +32,14 @@ class Register extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(this.state.credentials),
-        }).then(data => {
-            alert(JSON.stringify(data))
+        })
+        .then((response) => response.json())
+        .then(jsonResponse => {
+            if(jsonResponse.confirmation==='success') {
+                this.props.navigation.navigate('main')
+            } else{
+                throw new Error({message: 'Sorry, something went wrong. Please try again'})
+            }
         })
         .catch(err => {
             alert(err.message)
@@ -51,26 +56,36 @@ class Register extends Component {
                 justifyContent: 'center', 
                 flex: 1, 
                 alignItems: 'center',
-                backgroundColor: 'rgb(252,61,57)'}}
+                backgroundColor: 'rgb(112,128,144)'}}
                 onPress={() => this.register()}
                 >
 
+                <View>
+                    <Text style={styles.joinText}>Join RealGram</Text>
+                </View>
+
                 <TextInput
+                    autoCapitalize='none'
+                    placeholderTextColor='black'
                     autoCorrect={false}
                     value={this.state.email}
                     onChangeText={text => this.updateText(text, 'email')}
                     placeholder='Email' 
                     style={styles.input}/>
                 <TextInput
+                    autoCapitalize='none'
+                    placeholderTextColor='black'
                     autoCorrect={false}
                     value={this.state.password}
                     onChangeText={text => this.updateText(text, 'password')}
                     secureTextEntry 
                     placeholder='Password' 
                     style={styles.input}/>
-                <Button onPress={() => {
-                    this.register()
-                }} title='Signup'/>
+                <Button
+                    color="#000000"
+                    onPress={() => {
+                        this.register()}} 
+                    title='Signup'/>
             </View>
         )
     }
@@ -79,10 +94,23 @@ class Register extends Component {
 const styles = StyleSheet.create({
     input: {
         height: 50,
-        width: 100 + '%',
-        marginHorizontal: 50,
+        width: 85 + '%',
+        paddingHorizontal: 20,
         backgroundColor: 'rgb(255,255,255)',
-        marginBottom: 10
+        marginBottom: 10,
+        borderRadius: 20,
+        borderColor: '#000000',
+        borderWidth: 1,
+        color: 'black'
+    },
+    joinText: {
+        fontSize: 40,
+        paddingBottom: 50,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textShadowColor: '#ffffff',
+        textShadowOffset: {width: .1, height: .1},
+        textShadowRadius: 10
     }
 })
 
