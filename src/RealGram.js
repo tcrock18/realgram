@@ -1,35 +1,34 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View } from 'react-native'
+import { SwitchNavigator, TabNavigator, StackNavigator } from 'react-navigation'
 
-import { PostFeed } from './components/container'
+import { MainFeed, Login, Register, Camera, Profile } from './components/screens'
+
+const Tabs = TabNavigator ({
+    Feed: MainFeed,
+    Camera: Camera,
+    Profile: Profile
+})
+
+const IntroStack = StackNavigator ({
+    register: Register,
+    login: Login
+    
+})
+
+const MainStack = SwitchNavigator ({
+    intro: IntroStack,
+    main: Tabs
+})
 
 class RealGram extends Component {
 
     render() {
 
         return(
-            <View style={{ flex: 1, width: 100 + "%", height: 100 + "%" }}>
-                <View style={styles.tempNav}>
-                    <Text>RealGram</Text>
-                </View>
-                <PostFeed />
-            </View>
+            <MainStack />
         )
     }
 }
-
-const styles = StyleSheet.create({
-    tempNav: {
-        width: 100 + "%", 
-        height: 75, 
-        paddingTop: 50,
-        backgroundColor:'rgb(250,250,250)',
-        borderBottomColor: 'rgb(233,233,233)',
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        justifyContent: "center",
-        alignItems: "center"
-
-    }
-})
 
 export default RealGram;
