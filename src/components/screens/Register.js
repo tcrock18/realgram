@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native'
 
+// move URL to secure folder once finished
+import config from '../../config'
+
 class Register extends Component {
     constructor() {
         super()
         this.state = {
             credentials: {
-                login: '',
+                email: '',
                 password: ''
             }
         }
@@ -21,10 +24,21 @@ class Register extends Component {
     }
 
     register = () => {
-        //Send credentials to server if signup success
-        //else error message
-        alert(JSON.stringify(this.state.credentials))
-        // this.props.navigation.navigate('main')
+        // Move baseUrl to secure folder once finished
+        // Send credentials to server if signup success
+        fetch(config.baseUrl + 'signup', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state.credentials),
+        }).then(data => {
+            alert(JSON.stringify(data))
+        })
+        .catch(err => {
+            alert(err.message)
+        })
     }
 
     render() {
@@ -37,16 +51,15 @@ class Register extends Component {
                 justifyContent: 'center', 
                 flex: 1, 
                 alignItems: 'center',
-                backgroundColor: 'rgb(252,61,57)'
-                }}
+                backgroundColor: 'rgb(252,61,57)'}}
                 onPress={() => this.register()}
                 >
 
                 <TextInput
                     autoCorrect={false}
-                    value={this.state.login}
-                    onChangeText={text => this.updateText(text, 'login')}
-                    placeholder='Username' 
+                    value={this.state.email}
+                    onChangeText={text => this.updateText(text, 'email')}
+                    placeholder='Email' 
                     style={styles.input}/>
                 <TextInput
                     autoCorrect={false}

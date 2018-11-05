@@ -4,6 +4,8 @@ import { SwitchNavigator, TabNavigator, StackNavigator } from 'react-navigation'
 
 import { MainFeed, Login, Register, Camera, Profile } from './components/screens'
 
+// Navigation from React Navigation
+
 const Tabs = TabNavigator ({
     Feed: MainFeed,
     Camera: Camera,
@@ -13,7 +15,6 @@ const Tabs = TabNavigator ({
 const IntroStack = StackNavigator ({
     register: Register,
     login: Login
-    
 })
 
 const MainStack = SwitchNavigator ({
