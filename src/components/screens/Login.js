@@ -35,7 +35,9 @@ class Login extends Component {
         .then((response) => response.json())
         .then(jsonResponse => {
             if(jsonResponse.confirmation==='success') {
-                this.props.navigation.navigate('main')
+                this.props.navigation.navigate({
+                    routeName: 'Camera', 
+                    params: { user: jsonResponse.data.id }})
             } else{
                 throw new Error(jsonResponse.message)
             }

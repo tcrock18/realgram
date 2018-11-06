@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { SwitchNavigator, TabNavigator, StackNavigator } from 'react-navigation'
 
-import { MainFeed, Login, Register, Camera, Profile } from './components/screens'
+import { MainFeed, Login, Register, CameraScreen, Profile } from './components/screens'
 
 // Navigation from React Navigation
 
 const Tabs = TabNavigator ({
     Feed: MainFeed,
-    Camera: Camera,
+    Camera: CameraScreen,
     Profile: Profile
 })
 

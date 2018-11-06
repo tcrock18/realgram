@@ -28,7 +28,14 @@
           "NSAllowsArbitraryLoadsForMedia": true, 
           "NSAllowsArbitraryLoadsInWebContent": true, 
           "NSExceptionAllowsInsecureHTTPLoads": true
-        }
+        },
+        "NSCameraUsageDescription": "Allow RealGram experiences to use your camera",
+        "NSLocalizedDescription": "Allow RealGram to use your camera",
+        "NSLocationWhenInUseUsageDescription": "Allow RealGram to use your location",
+        "NSMicrophoneUsageDescription": "Allow RealGram to use your microphone",
+        "NSMotionUsageDescription": "Allow RealGram to use your motion",
+        "NSPhotoLibraryAddUsageDescription": "Allow RealGram to save your photos",
+        "NSPhotoLibraryUsageDescription": "Allow RealGram to use your photo library"
       }
     }
   }

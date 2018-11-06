@@ -1,7 +1,7 @@
 import MainFeed from './MainFeed'
 import Login from './Login'
 import Profile from './Profile'
-import Camera from './Camera'
+import CameraScreen from './CameraScreen'
 import Register from './Register'
 
 export {
@@ -9,7 +9,7 @@ export {
     MainFeed,
     Login,
     Profile,
-    Camera,
+    CameraScreen,
     Register
 
 }
