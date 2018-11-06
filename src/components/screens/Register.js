@@ -81,11 +81,12 @@ class Register extends Component {
                     secureTextEntry 
                     placeholder='Password' 
                     style={styles.input}/>
-                <Button
-                    color="#000000"
+                <TouchableOpacity
                     onPress={() => {
                         this.register()}} 
-                    title='Signup'/>
+                    style={{alignItems: 'center'}}>
+                    <Text style={styles.joinButton}>Join</Text>
+                    </TouchableOpacity>
             </View>
         )
     }
@@ -107,10 +108,16 @@ const styles = StyleSheet.create({
         fontSize: 40,
         paddingBottom: 50,
         fontStyle: 'italic',
-        fontWeight: 'bold',
-        textShadowColor: '#ffffff',
-        textShadowOffset: {width: .1, height: .1},
-        textShadowRadius: 10
+        fontWeight: 'bold'
+    },
+    joinButton: {
+        marginVertical: 20,
+        paddingVertical: 15,
+        paddingHorizontal: 75,
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 15,
+        fontSize: 20
     }
 })
 

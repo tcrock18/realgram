@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native'
 
 import config from '../../config'
 
@@ -83,11 +83,12 @@ class Login extends Component {
                     secureTextEntry 
                     placeholder='Password' 
                     style={styles.input}/>
-                <Button
-                    color="#000000"
+                <TouchableOpacity
                     onPress={() => {
-                        this.login()}} 
-                    title='Login'/>
+                        this.login()}}
+                    style={{alignItems: 'center'}}>
+                    <Text style={styles.loginText}>Login</Text>
+                    </TouchableOpacity>
 
                 <Button
                     color="#ffffff"
@@ -117,6 +118,15 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontStyle: 'italic',
         fontWeight: 'bold'
+    },
+    loginText: {
+        marginVertical: 20,
+        paddingVertical: 15,
+        paddingHorizontal: 75,
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 15,
+        fontSize: 20
     }
 })
 
