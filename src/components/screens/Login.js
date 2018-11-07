@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'rea
 import config from '../../config'
 
 class Login extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             credentials: {
                 email: '',

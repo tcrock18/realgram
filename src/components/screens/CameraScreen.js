@@ -34,29 +34,23 @@ class CameraScreen extends Component {
         if(this.camera) {
             const options = { quality: 0.5, base64: true }
             const data = await this.camera.takePictureAsync(options)
-            console.log(data)
+            // console.log(data)
             const turbo = Turbo({ site_id: '5bdcf2fa25a0bb0013b3b325' })
-            turbo.uploadFile({
+            const apiKey = '5f0a0582-2452-42d9-a814-eec73406b588'
+            const cdnResp = await turbo.uploadFile({
                 uri: data.uri,
                 name: 'camera_pic',
                 type: 'image/jpeg'
+            }, apiKey)
+            const resp = await fetch(
+                config.baseUrl + '/users/' + this.state.userId + '/photo', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageUrl: cdnResp.result.url }),
             })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-            // const resp = await fetch(
-            //     config.baseUrl + 'users/' + this.state.userId + '/photo', {
-            //     method: 'POST',
-            //     headers: {
-            //         Accept: 'application/json',
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ body: 'test'}),
-            // })
         }
     }
 
