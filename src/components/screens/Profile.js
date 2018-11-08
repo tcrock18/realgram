@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions, ScrollView } from 'react-native'
 
 import config from '../../config'
 
@@ -44,14 +44,10 @@ class Profile extends Component {
         this._navListener.remove()
     }
 
-    login = () => {
-        //Navigate to Main Feed here
-        this.props.navigation.navigate('main')
-    }
-
     render() {
 
         return(
+            <ScrollView>
             <View style={{
                 height: 100 + '%', 
                 width: 100 + '%', 
@@ -59,20 +55,26 @@ class Profile extends Component {
                 flex: 1, 
                 alignItems: 'center'
                 }}
-                onPress={() => this.login()}
                 >
+                <View style={styles.profileInfo}>
+                    <View>
+
+                    </View>
+                </View>
                 <View style={styles.profilePicContainer}>
                 {this.state.profilePics.map((pic, i) => {
-                    console.log(pic.url)
                     return (
                         <Image
                             key={pic.id} 
                             style={styles.profilePicThumb} 
                             source={{ uri: `${pic.url}=s${config.styleConstants.oneThirdWidth}-c` }}/>
                     )
-                })}
+                })}    
+                        
+                    
                 </View>
             </View>
+            </ScrollView>
         )
     }
 }
@@ -86,6 +88,12 @@ const styles = StyleSheet.create({
     profilePicThumb: {
         width: config.styleConstants.oneThirdWidth,
         height: config.styleConstants.oneThirdWidth
+    },
+    profileInfo: {
+        width: 100 + '%',
+        height: 250,
+        display: 'flex',
+        flexDirection: 'column'
     }
 })
 
