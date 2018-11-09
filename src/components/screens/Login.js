@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native'
 
+import actions from '../../redux/actions'
+import { connect } from 'react-redux'
+
 import config from '../../config'
 
 class Login extends Component {
@@ -34,10 +37,9 @@ class Login extends Component {
         })
         .then((response) => response.json())
         .then(jsonResponse => {
-            if(jsonResponse.confirmation==='success') {
-                this.props.navigation.navigate({
-                    routeName: 'Camera', 
-                    params: { user: jsonResponse.data.id }})
+            if(jsonResponse.confirmation === 'success') {
+                this.props.userReceived(jsonResponse.data)
+                this.props.navigation.navigate('main')
             } else{
                 throw new Error(jsonResponse.message)
             }
@@ -132,4 +134,16 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login;
+const stateToProps = state => {
+    return {
+        
+    }
+}
+
+const dispatchToProps = dispatch => {
+    return {
+        userReceived: (user) => dispatch(actions.userReceived(user))
+    }
+}
+
+export default connect(stateToProps, dispatchToProps) (Login);

@@ -11,6 +11,8 @@ import {
     Permissions 
 } from 'expo'
 
+import { connect } from 'react-redux'
+
 import config from '../../config'
 
 import Turbo from 'turbo360'
@@ -21,7 +23,6 @@ class CameraScreen extends Component {
         this.state = {
             hasCameraPermission: null,
             type: Camera.Constants.Type.back,
-            userId: this.props.navigation.state.params.user
           };
     }
     
@@ -42,7 +43,7 @@ class CameraScreen extends Component {
                 type: 'image/jpeg'
             }, apiKey)
             const resp = await fetch(
-                config.baseUrl + 'users/' + this.state.userId + '/photo', {
+                config.baseUrl + 'users/' + this.props.user.id + '/photo', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -53,9 +54,7 @@ class CameraScreen extends Component {
             const myJson = await resp.json()
             const {data} = myJson
 
-            this.props.navigation.navigate('Profile', {
-                newPic: data
-            })
+            this.props.navigation.navigate('Profile')
             console.log(myJson)
         }
     }
@@ -111,4 +110,16 @@ const styles = StyleSheet.create({
     }
 })
 
-export default CameraScreen;
+const stateToProps = state => {
+    return {
+        user: state.account.user
+    }
+}
+
+const dispatchToProps = dispatch => {
+    return {
+        
+    }
+}
+
+export default connect(stateToProps, dispatchToProps) (CameraScreen);
