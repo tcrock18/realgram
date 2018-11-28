@@ -64,7 +64,7 @@ class CameraScreen extends Component {
         if (hasCameraPermission === null) {
             return <View />;
         } else if (hasCameraPermission === false) {
-            return <Text>No access to camera</Text>;
+            return <Text>Please allow access to camera</Text>;
         } else {
         return  (
             <View style={styles.container}>
@@ -79,7 +79,7 @@ class CameraScreen extends Component {
                 <TouchableOpacity
                     onPress={this.takePicture.bind(this)}
                     style={styles.capture}>
-                    <Text style={{fontSize: 14}}>Snap</Text>
+                    <Text style={{fontSize: 14}}>Take Picture</Text>
                 </TouchableOpacity>
               </View>
             </View>

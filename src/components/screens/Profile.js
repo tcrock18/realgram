@@ -95,15 +95,15 @@ class Profile extends Component {
                     
                     <View style={{flexDirection: 'column', width: 100 + '%'}}>
                         <Text style={styles.fontBold}>Tanner Crockett</Text>
-                        <Text style={styles.fontSm}>React Native is cool I guess</Text>
+                        <Text style={styles.fontSm}>Bio here, something cool</Text>
                     </View>
                 </View>
                 <View style={styles.topBar}>
-                    <View style={styles.topBarIcon}></View>
-                    <View style={styles.topBarIcon}></View>
-                    <View style={styles.topBarIcon}></View>
-                    <View style={styles.topBarIcon}></View>
-                    <View style={styles.topBarIcon}></View>
+                    <View style={styles.topBarIcon}>icon</View>
+                    <View style={styles.topBarIcon}>icon</View>
+                    <View style={styles.topBarIcon}>icon</View>
+                    <View style={styles.topBarIcon}>icon</View>
+                    <View style={styles.topBarIcon}>icon</View>
                 </View>
                 <View style={styles.profilePicContainer}>
                 {this.props.user.photos.map((pic, i) => {
